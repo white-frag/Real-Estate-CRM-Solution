@@ -68,15 +68,15 @@ const LeadList: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-4 lg:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Leads Management</h1>
-          <p className="text-gray-600 mt-2">Manage and track all your real estate leads</p>
+          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">Leads Management</h1>
+          <p className="text-gray-600 mt-2 text-sm lg:text-base">Manage and track all your real estate leads</p>
         </div>
         <button
           onClick={() => setShowAddForm(true)}
-          className="flex items-center space-x-2 bg-midnight-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          className="flex items-center justify-center space-x-2 bg-midnight-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors w-full sm:w-auto"
         >
           <Plus className="h-4 w-4" />
           <span>Add New Lead</span>
@@ -84,24 +84,24 @@ const LeadList: React.FC = () => {
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="p-6 border-b border-gray-200">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-            <div className="flex items-center space-x-4">
-              <div className="relative">
+        <div className="p-4 lg:p-6 border-b border-gray-200">
+          <div className="flex flex-col space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <input
                   type="text"
                   placeholder="Search leads..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent text-sm"
                 />
               </div>
               
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent text-sm"
               >
                 <option value="all">All Status</option>
                 <option value="new">New</option>
@@ -114,7 +114,7 @@ const LeadList: React.FC = () => {
 
             <button
               onClick={exportToCSV}
-              className="flex items-center space-x-2 text-gray-600 hover:text-midnight-blue transition-colors px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="flex items-center justify-center space-x-2 text-gray-600 hover:text-midnight-blue transition-colors px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 w-full sm:w-auto"
             >
               <Download className="h-4 w-4" />
               <span>Export CSV</span>
@@ -122,7 +122,70 @@ const LeadList: React.FC = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Mobile Card View */}
+        <div className="lg:hidden">
+          <div className="p-4 lg:p-6 space-y-4">
+            {filteredLeads.map((lead) => (
+              <div key={lead.id} className="border border-gray-200 rounded-lg p-4 space-y-3">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-medium text-gray-900 truncate">{lead.name}</h3>
+                    <p className="text-xs text-gray-500 truncate">{lead.location}</p>
+                  </div>
+                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(lead.status)} ml-2`}>
+                    {lead.status}
+                  </span>
+                </div>
+                
+                <div className="space-y-1">
+                  <p className="text-xs text-gray-900">{lead.email}</p>
+                  <p className="text-xs text-gray-500">{lead.phone}</p>
+                  <p className="text-xs text-gray-600">Budget: ₹{lead.budget.toLocaleString('en-IN')}</p>
+                  <p className="text-xs text-gray-600 capitalize">Type: {lead.propertyType}</p>
+                  <p className="text-xs text-gray-500">{format(lead.createdAt, 'MMM dd, yyyy')}</p>
+                </div>
+
+                <div className="flex items-center space-x-2 pt-2 border-t border-gray-100">
+                  <button
+                    onClick={() => setViewingLead(lead)}
+                    className="flex-1 flex items-center justify-center space-x-1 text-gray-600 hover:text-midnight-blue transition-colors text-xs"
+                  >
+                    <Eye className="h-3 w-3" />
+                    <span>View</span>
+                  </button>
+                  <button
+                    onClick={() => setEditingLead(lead)}
+                    className="flex-1 flex items-center justify-center space-x-1 text-midnight-blue hover:text-blue-700 transition-colors text-xs"
+                  >
+                    <Edit className="h-3 w-3" />
+                    <span>Edit</span>
+                  </button>
+                  <button
+                    onClick={() => handleDelete(lead.id, lead.name)}
+                    className="flex-1 flex items-center justify-center space-x-1 text-red-600 hover:text-red-700 transition-colors text-xs"
+                  >
+                    <Trash2 className="h-3 w-3" />
+                    <span>Delete</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+            
+            {filteredLeads.length === 0 && (
+              <div className="text-center text-gray-500 py-8">
+                <div className="text-sm">
+                  {searchTerm || statusFilter !== 'all' 
+                    ? 'No leads found matching your criteria' 
+                    : 'No leads available'
+                  }
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Desktop Table View */}
+        <div className="hidden lg:block overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>

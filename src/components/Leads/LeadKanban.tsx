@@ -40,10 +40,10 @@ const LeadKanban: React.FC = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6">
         {Object.entries(columns).map(([status, config]) => (
-          <div key={status} className={`border-2 rounded-lg ${config.color} p-4`}>
-            <h3 className="font-semibold text-gray-900 mb-4">
+          <div key={status} className={`border-2 rounded-lg ${config.color} p-3 lg:p-4`}>
+            <h3 className="font-semibold text-gray-900 mb-3 lg:mb-4 text-sm lg:text-base">
               {config.title} ({getLeadsByStatus(status).length})
             </h3>
             <Droppable droppableId={status}>
@@ -51,7 +51,7 @@ const LeadKanban: React.FC = () => {
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className={`min-h-32 ${snapshot.isDraggingOver ? 'bg-white/50' : ''} rounded`}
+                  className={`min-h-24 lg:min-h-32 ${snapshot.isDraggingOver ? 'bg-white/50' : ''} rounded`}
                 >
                   {getLeadsByStatus(status).map((lead, index) => (
                     <Draggable key={lead.id} draggableId={lead.id} index={index}>
@@ -60,41 +60,41 @@ const LeadKanban: React.FC = () => {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          className={`bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-3 ${
+                          className={`bg-white rounded-lg shadow-sm border border-gray-200 p-3 lg:p-4 mb-2 lg:mb-3 ${
                             snapshot.isDragging ? 'shadow-lg' : ''
                           } hover:shadow-md transition-shadow cursor-move`}
                         >
-                          <div className="space-y-2">
-                            <h4 className="font-medium text-gray-900">{lead.name}</h4>
+                          <div className="space-y-1.5 lg:space-y-2">
+                            <h4 className="font-medium text-gray-900 text-sm lg:text-base truncate">{lead.name}</h4>
                             
-                            <div className="flex items-center text-sm text-gray-600">
-                              <Phone className="h-3 w-3 mr-1" />
+                            <div className="flex items-center text-xs lg:text-sm text-gray-600">
+                              <Phone className="h-3 w-3 mr-1 flex-shrink-0" />
                               <span className="truncate">{lead.phone}</span>
                             </div>
                             
-                            <div className="flex items-center text-sm text-gray-600">
-                              <Mail className="h-3 w-3 mr-1" />
+                            <div className="flex items-center text-xs lg:text-sm text-gray-600">
+                              <Mail className="h-3 w-3 mr-1 flex-shrink-0" />
                               <span className="truncate">{lead.email}</span>
                             </div>
                             
-                            <div className="flex items-center text-sm text-gray-600">
-                              <MapPin className="h-3 w-3 mr-1" />
+                            <div className="flex items-center text-xs lg:text-sm text-gray-600">
+                              <MapPin className="h-3 w-3 mr-1 flex-shrink-0" />
                               <span className="truncate">{lead.location}</span>
                             </div>
                             
-                            <div className="flex items-center text-sm text-gray-600">
-                              <DollarSign className="h-3 w-3 mr-1" />
-                              <span>{formatCurrency(lead.budget)}</span>
+                            <div className="flex items-center text-xs lg:text-sm text-gray-600">
+                              <DollarSign className="h-3 w-3 mr-1 flex-shrink-0" />
+                              <span className="truncate">{formatCurrency(lead.budget)}</span>
                             </div>
                             
                             {lead.assignedAgent && (
-                              <div className="flex items-center text-sm text-gray-600">
-                                <User className="h-3 w-3 mr-1" />
+                              <div className="flex items-center text-xs lg:text-sm text-gray-600">
+                                <User className="h-3 w-3 mr-1 flex-shrink-0" />
                                 <span className="truncate">Agent ID: {lead.assignedAgent}</span>
                               </div>
                             )}
                             
-                            <div className="pt-2 border-t border-gray-100">
+                            <div className="pt-1.5 lg:pt-2 border-t border-gray-100">
                               <span className="inline-block px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded">
                                 {lead.propertyType}
                               </span>

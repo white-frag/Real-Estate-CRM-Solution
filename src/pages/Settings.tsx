@@ -58,23 +58,23 @@ const Settings: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 lg:space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-600 mt-2">Manage your account and application preferences</p>
+        <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">Settings</h1>
+        <p className="text-gray-600 mt-2 text-sm lg:text-base">Manage your account and application preferences</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="lg:col-span-2 space-y-4 lg:space-y-6">
           <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-            <div className="p-6 border-b border-gray-200">
+            <div className="p-4 lg:p-6 border-b border-gray-200">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                 <User className="h-5 w-5 mr-2" />
                 Profile Settings
               </h3>
             </div>
-            <div className="p-6 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-4 lg:p-6 space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Full Name
@@ -83,7 +83,7 @@ const Settings: React.FC = () => {
                     type="text"
                     value={profileData.name}
                     onChange={(e) => setProfileData({...profileData, name: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent text-sm"
                   />
                 </div>
                 <div>
@@ -94,7 +94,7 @@ const Settings: React.FC = () => {
                     type="email"
                     value={profileData.email}
                     onChange={(e) => setProfileData({...profileData, email: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent text-sm"
                   />
                 </div>
               </div>
@@ -106,12 +106,12 @@ const Settings: React.FC = () => {
                   type="text"
                   value={profileData.role}
                   disabled
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-500 text-sm"
                 />
               </div>
               <button
                 onClick={handleProfileSave}
-                className="flex items-center space-x-2 bg-midnight-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex items-center justify-center space-x-2 bg-midnight-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors w-full sm:w-auto"
               >
                 <Save className="h-4 w-4" />
                 <span>Save Profile</span>
@@ -120,13 +120,13 @@ const Settings: React.FC = () => {
           </div>
 
           <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-            <div className="p-6 border-b border-gray-200">
+            <div className="p-4 lg:p-6 border-b border-gray-200">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                 <Bell className="h-5 w-5 mr-2" />
                 Notification Settings
               </h3>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-4 lg:p-6 space-y-4">
               {[
                 { key: 'emailNotifications', label: 'Email notifications for new leads' },
                 { key: 'smsAlerts', label: 'SMS alerts for high-value leads' },
@@ -134,7 +134,7 @@ const Settings: React.FC = () => {
                 { key: 'whatsappAlerts', label: 'WhatsApp integration alerts' },
               ].map((setting) => (
                 <div key={setting.key} className="flex items-center justify-between">
-                  <span className="text-gray-700">{setting.label}</span>
+                  <span className="text-sm lg:text-base text-gray-700">{setting.label}</span>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
                       type="checkbox"
@@ -151,7 +151,7 @@ const Settings: React.FC = () => {
               ))}
               <button
                 onClick={handleNotificationSave}
-                className="flex items-center space-x-2 bg-midnight-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex items-center justify-center space-x-2 bg-midnight-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors w-full sm:w-auto"
               >
                 <Save className="h-4 w-4" />
                 <span>Save Notifications</span>
@@ -160,14 +160,14 @@ const Settings: React.FC = () => {
           </div>
 
           <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-            <div className="p-6 border-b border-gray-200">
+            <div className="p-4 lg:p-6 border-b border-gray-200">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                 <Globe className="h-5 w-5 mr-2" />
                 Language & Region
               </h3>
             </div>
-            <div className="p-6">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-4 lg:p-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Language
@@ -178,7 +178,7 @@ const Settings: React.FC = () => {
                       setLanguage(e.target.value as 'en' | 'hi');
                       toast.success('Language updated successfully!');
                     }}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent text-sm"
                   >
                     <option value="en">English</option>
                     <option value="hi">हिंदी (Hindi)</option>
@@ -188,7 +188,7 @@ const Settings: React.FC = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Currency
                   </label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent">
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent text-sm">
                     <option value="INR">INR (₹)</option>
                     <option value="USD">USD ($)</option>
                   </select>
@@ -198,46 +198,46 @@ const Settings: React.FC = () => {
           </div>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4 lg:space-y-6">
           <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-            <div className="p-6 border-b border-gray-200">
+            <div className="p-4 lg:p-6 border-b border-gray-200">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                 <Shield className="h-5 w-5 mr-2" />
                 Security
               </h3>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-4 lg:p-6 space-y-4">
               <button 
                 onClick={handlePasswordChange}
                 className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="font-medium text-gray-900">Change Password</div>
-                <div className="text-sm text-gray-600">Update your account password</div>
+                <div className="font-medium text-gray-900 text-sm lg:text-base">Change Password</div>
+                <div className="text-xs lg:text-sm text-gray-600">Update your account password</div>
               </button>
               <button 
                 onClick={handleTwoFactorAuth}
                 className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="font-medium text-gray-900">Two-Factor Authentication</div>
-                <div className="text-sm text-gray-600">Add an extra layer of security</div>
+                <div className="font-medium text-gray-900 text-sm lg:text-base">Two-Factor Authentication</div>
+                <div className="text-xs lg:text-sm text-gray-600">Add an extra layer of security</div>
               </button>
             </div>
           </div>
 
           <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-            <div className="p-6 border-b border-gray-200">
+            <div className="p-4 lg:p-6 border-b border-gray-200">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                 <Database className="h-5 w-5 mr-2" />
                 Data Management
               </h3>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-4 lg:p-6 space-y-4">
               <button 
                 onClick={handleExportData}
                 className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="font-medium text-gray-900">Export Data</div>
-                <div className="text-sm text-gray-600">Download your leads and properties</div>
+                <div className="font-medium text-gray-900 text-sm lg:text-base">Export Data</div>
+                <div className="text-xs lg:text-sm text-gray-600">Download your leads and properties</div>
               </button>
               <button 
                 onClick={handleImportData}
@@ -245,8 +245,8 @@ const Settings: React.FC = () => {
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="font-medium text-gray-900">Import Data</div>
-                    <div className="text-sm text-gray-600">Upload leads from CSV file</div>
+                    <div className="font-medium text-gray-900 text-sm lg:text-base">Import Data</div>
+                    <div className="text-xs lg:text-sm text-gray-600">Upload leads from CSV file</div>
                   </div>
                   <Upload className="h-4 w-4 text-gray-400" />
                 </div>

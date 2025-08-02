@@ -8,11 +8,16 @@ import {
   Settings, 
   MessageSquare,
   UserCheck,
-  LogOut
+  LogOut,
+  X
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  onClose?: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
   const { user, logout } = useApp();
 
   const navigation = [
@@ -31,12 +36,28 @@ const Sidebar: React.FC = () => {
     }
   };
 
+  const handleNavClick = () => {
+    if (onClose) {
+      onClose();
+    }
+  };
+
   return (
     <div className="bg-midnight-blue text-white w-64 min-h-screen flex flex-col">
-      <div className="p-6">
-        <div className="flex items-center space-x-3">
-          <Building className="h-8 w-8 text-blue-400" />
-          <h1 className="text-xl font-bold">EstateFlow CRM</h1>
+      <div className="p-4 lg:p-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Building className="h-8 w-8 text-blue-400" />
+            <h1 className="text-xl font-bold">EstateFlow CRM</h1>
+          </div>
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-700 transition-colors"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          )}
         </div>
       </div>
 
@@ -45,6 +66,7 @@ const Sidebar: React.FC = () => {
           <NavLink
             key={item.name}
             to={item.href}
+            onClick={handleNavClick}
             className={({ isActive }) =>
               `flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
                 isActive
@@ -66,9 +88,9 @@ const Sidebar: React.FC = () => {
             alt={user?.name}
             className="h-10 w-10 rounded-full"
           />
-          <div>
-            <p className="text-sm font-medium">{user?.name}</p>
-            <p className="text-xs text-gray-400 capitalize">{user?.role}</p>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-medium truncate">{user?.name}</p>
+            <p className="text-xs text-gray-400 capitalize truncate">{user?.role}</p>
           </div>
         </div>
         <button 

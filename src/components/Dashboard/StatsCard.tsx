@@ -25,19 +25,19 @@ const StatsCard: React.FC<StatsCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 lg:p-6">
       <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-medium text-gray-600">{title}</p>
-          <p className="text-3xl font-bold text-gray-900 mt-2">{value}</p>
+        <div className="min-w-0 flex-1">
+          <p className="text-xs lg:text-sm font-medium text-gray-600 truncate">{title}</p>
+          <p className="text-2xl lg:text-3xl font-bold text-gray-900 mt-1 lg:mt-2">{value}</p>
           {change && (
-            <p className={`text-sm mt-2 ${changeColors[changeType]}`}>
+            <p className={`text-xs lg:text-sm mt-1 lg:mt-2 ${changeColors[changeType]} truncate`}>
               {change}
             </p>
           )}
         </div>
-        <div className={`p-3 rounded-full ${color}`}>
-          <Icon className="h-6 w-6 text-white" />
+        <div className={`p-2 lg:p-3 rounded-full ${color} flex-shrink-0 ml-3`}>
+          <Icon className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
         </div>
       </div>
     </div>

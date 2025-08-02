@@ -27,19 +27,19 @@ const Analytics: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 lg:space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Analytics & Reports</h1>
-        <p className="text-gray-600 mt-2">Gain insights into your real estate business performance</p>
+        <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">Analytics & Reports</h1>
+        <p className="text-gray-600 mt-2 text-sm lg:text-base">Gain insights into your real estate business performance</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-          <div className="p-6 border-b border-gray-200">
+          <div className="p-4 lg:p-6 border-b border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900">Lead Generation Trends</h3>
           </div>
-          <div className="p-6">
-            <ResponsiveContainer width="100%" height={300}>
+          <div className="p-4 lg:p-6">
+            <ResponsiveContainer width="100%" height={250}>
               <LineChart data={leadData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
@@ -54,11 +54,11 @@ const Analytics: React.FC = () => {
         </div>
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-          <div className="p-6 border-b border-gray-200">
+          <div className="p-4 lg:p-6 border-b border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900">Lead Sources</h3>
           </div>
-          <div className="p-6">
-            <ResponsiveContainer width="100%" height={300}>
+          <div className="p-4 lg:p-6">
+            <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
                   data={sourceData}
@@ -81,11 +81,11 @@ const Analytics: React.FC = () => {
         </div>
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 lg:col-span-2">
-          <div className="p-6 border-b border-gray-200">
+          <div className="p-4 lg:p-6 border-b border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900">Property Type Performance</h3>
           </div>
-          <div className="p-6">
-            <ResponsiveContainer width="100%" height={300}>
+          <div className="p-4 lg:p-6">
+            <ResponsiveContainer width="100%" height={250}>
               <BarChart data={propertyTypeData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="type" />
@@ -100,23 +100,23 @@ const Analytics: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h4 className="text-lg font-semibold text-gray-900 mb-4">Monthly Revenue</h4>
-          <div className="text-3xl font-bold text-green-600">₹45,67,890</div>
-          <p className="text-sm text-gray-600 mt-2">+12% from last month</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 lg:p-6">
+          <h4 className="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Monthly Revenue</h4>
+          <div className="text-2xl lg:text-3xl font-bold text-green-600">₹45,67,890</div>
+          <p className="text-xs lg:text-sm text-gray-600 mt-2">+12% from last month</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h4 className="text-lg font-semibold text-gray-900 mb-4">Average Deal Size</h4>
-          <div className="text-3xl font-bold text-midnight-blue">₹56,78,900</div>
-          <p className="text-sm text-gray-600 mt-2">+5% from last month</p>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 lg:p-6">
+          <h4 className="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Average Deal Size</h4>
+          <div className="text-2xl lg:text-3xl font-bold text-midnight-blue">₹56,78,900</div>
+          <p className="text-xs lg:text-sm text-gray-600 mt-2">+5% from last month</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h4 className="text-lg font-semibold text-gray-900 mb-4">Time to Close</h4>
-          <div className="text-3xl font-bold text-purple-600">28 days</div>
-          <p className="text-sm text-gray-600 mt-2">-3 days from last month</p>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 lg:p-6 sm:col-span-2 lg:col-span-1">
+          <h4 className="text-base lg:text-lg font-semibold text-gray-900 mb-3 lg:mb-4">Time to Close</h4>
+          <div className="text-2xl lg:text-3xl font-bold text-purple-600">28 days</div>
+          <p className="text-xs lg:text-sm text-gray-600 mt-2">-3 days from last month</p>
         </div>
       </div>
     </div>

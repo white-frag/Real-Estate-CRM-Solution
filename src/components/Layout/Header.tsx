@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Bell, Search, Globe, X } from 'lucide-react';
+import { Bell, Search, Globe, X, Menu } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onMenuClick?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
   const { language, setLanguage, notifications, setNotifications } = useApp();
   const [searchTerm, setSearchTerm] = useState('');
   const [showNotifications, setShowNotifications] = useState(false);
@@ -24,9 +28,18 @@ const Header: React.FC = () => {
   const unreadCount = mockNotifications.filter(n => n.unread).length;
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
+    <header className="bg-white shadow-sm border-b border-gray-200 px-4 lg:px-6 py-4">
       <div className="flex items-center justify-between">
-        <div className="flex-1 max-w-md">
+        {/* Mobile menu button */}
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          <Menu className="h-5 w-5 text-gray-600" />
+        </button>
+
+        {/* Search bar */}
+        <div className="flex-1 max-w-md mx-4">
           <form onSubmit={handleSearch} className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             <input
@@ -34,15 +47,16 @@ const Header: React.FC = () => {
               placeholder="Search leads, properties, agents..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-midnight-blue focus:border-transparent text-sm"
             />
           </form>
         </div>
 
-        <div className="flex items-center space-x-4">
+        {/* Right side actions */}
+        <div className="flex items-center space-x-2 lg:space-x-4">
           <button
             onClick={() => setLanguage(language === 'en' ? 'hi' : 'en')}
-            className="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-midnight-blue transition-colors rounded-lg hover:bg-gray-100"
+            className="hidden sm:flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-midnight-blue transition-colors rounded-lg hover:bg-gray-100"
           >
             <Globe className="h-4 w-4" />
             <span>{language === 'en' ? 'EN' : 'हि'}</span>
